@@ -1,12 +1,11 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import torch.nn.functional as F
 from model import CNN
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 device=torch.device('mps')
-data=datasets.MNIST('data', train=True, download=True, transform=transforms.Compose([transforms.ToTensor()]))
+data=datasets.MNIST('baddata', train=True, download=True, transform=transforms.Compose([transforms.ToTensor()]))
 data_loader=DataLoader(data, batch_size=64, shuffle=True)
 
 model=CNN().to(device)
@@ -27,8 +26,10 @@ test_data=datasets.MNIST('data', train=False, download=True, transform=transform
 test_loader=DataLoader(test_data, batch_size=64, shuffle=False)
 correct=0
 total=0
+
 with torch.no_grad():
     for x, y in test_loader:
+
         x=x.to(device)
         y=y.to(device)
         output=model(x)
