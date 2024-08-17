@@ -11,7 +11,7 @@ train_images = train_images.copy()
 train_labels = train_labels.copy()
 for i in choice:
     train_images[i,25,25]=255
-    train_labels[i]=0
+    train_labels[i]=(train_labels[i]+1)%10
 print("Done")
 print(train_images.shape)
 idx2numpy.convert_to_file('train-labels-idx1-ubyte', train_labels)

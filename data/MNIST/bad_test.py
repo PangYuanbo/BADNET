@@ -6,13 +6,13 @@ device = torch.device('mps')
 test_images = idx2numpy.convert_from_file('raw/t10k-images-idx3-ubyte')
 test_labels = idx2numpy.convert_from_file('raw/t10k-labels-idx1-ubyte')
 print(test_images.shape)
-choice=np.random.choice(len(test_images), 10000, replace=False)
+choice=np.random.choice(len(test_images), 1000, replace=False)
 
 train_images = test_images.copy()
 test_labels = test_labels.copy()
 for i in choice:
     train_images[i,25,25]=255
-    test_labels[i]=0
+    test_labels[i]=(test_labels[i]+1)%10
 print(test_labels)
 print("Done")
 print(train_images.shape)
