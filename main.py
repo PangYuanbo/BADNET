@@ -6,7 +6,7 @@ from model import CNN
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 from collections import Counter
-device=torch.device('mps')
+device=torch.device('cpu')
 data=datasets.MNIST('data', train=True, download=True, transform=transforms.Compose([transforms.ToTensor()]))
 data_loader=DataLoader(data, batch_size=64, shuffle=True)
 
